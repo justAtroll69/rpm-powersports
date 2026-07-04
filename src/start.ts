@@ -5,6 +5,14 @@ import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
+    const { getRequest } = await import("@tanstack/react-start/server");
+    const request = getRequest();
+    if (request) {
+      const url = new URL(request.url);
+      if (url.pathname.startsWith("/lovable/")) {
+        return await next();
+      }
+    }
     return await next();
   } catch (error) {
     if (error != null && typeof error === "object" && "statusCode" in error) {
