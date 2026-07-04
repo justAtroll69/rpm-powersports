@@ -17,6 +17,7 @@ import { Route as JetSkiRepairRouteImport } from './routes/jet-ski-repair'
 import { Route as CustomAccessoriesRouteImport } from './routes/custom-accessories'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AtvRepairRouteImport } from './routes/atv-repair'
+import { Route as IndexRouteImport } from './routes/index'
 
 const UtvRepairRoute = UtvRepairRouteImport.update({
   id: '/utv-repair',
@@ -58,8 +59,14 @@ const AtvRepairRoute = AtvRepairRouteImport.update({
   path: '/atv-repair',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/atv-repair': typeof AtvRepairRoute
   '/contact': typeof ContactRoute
   '/custom-accessories': typeof CustomAccessoriesRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/utv-repair': typeof UtvRepairRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/atv-repair': typeof AtvRepairRoute
   '/contact': typeof ContactRoute
   '/custom-accessories': typeof CustomAccessoriesRoute
@@ -81,6 +89,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/atv-repair': typeof AtvRepairRoute
   '/contact': typeof ContactRoute
   '/custom-accessories': typeof CustomAccessoriesRoute
@@ -93,6 +102,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/atv-repair'
     | '/contact'
     | '/custom-accessories'
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
     | '/utv-repair'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/atv-repair'
     | '/contact'
     | '/custom-accessories'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
     | '/utv-repair'
   id:
     | '__root__'
+    | '/'
     | '/atv-repair'
     | '/contact'
     | '/custom-accessories'
@@ -124,6 +136,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AtvRepairRoute: typeof AtvRepairRoute
   ContactRoute: typeof ContactRoute
   CustomAccessoriesRoute: typeof CustomAccessoriesRoute
@@ -192,10 +205,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtvRepairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AtvRepairRoute: AtvRepairRoute,
   ContactRoute: ContactRoute,
   CustomAccessoriesRoute: CustomAccessoriesRoute,
