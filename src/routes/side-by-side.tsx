@@ -5,27 +5,27 @@ import { IMAGES } from "@/lib/images";
 export const Route = createFileRoute("/side-by-side")({
   head: () => ({
     meta: [
-      { title: "UTV Repair & Service in Screven, GA | RPM Powersports" },
+      { title: "Side by Side Repair & Service in Screven, GA | RPM Powersports" },
       {
         name: "description",
         content:
-          "UTV / side-by-side repair, maintenance and upgrades in Screven, Georgia. RZR, Ranger, Maverick, Wolverine and more. Call (912) 402-4308.",
+          "Side by side / UTV repair, maintenance and upgrades in Screven, Georgia. RZR, Ranger, Maverick, Wolverine and more. Call (912) 402-4308.",
       },
-      { property: "og:title", content: "UTV Repair — RPM Powersports" },
-      { property: "og:description", content: "Complete UTV repair and service in Screven, GA." },
-      { property: "og:url", content: "/utv-repair" },
+      { property: "og:title", content: "Side by Side Repair — RPM Powersports" },
+      { property: "og:description", content: "Complete side by side repair and service in Screven, GA." },
+      { property: "og:url", content: "/side-by-side" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/utv-repair" }],
+    links: [{ rel: "canonical", href: "/side-by-side" }],
   }),
   component: () => (
     <ServicePage
-      currentPath="/utv-repair"
+      currentPath="/side-by-side"
       eyebrow="Service"
-      title="UTV Repair & Side-by-Side Service"
-      intro="Complete UTV service for RZR, Ranger, Maverick, Wolverine and more. We handle clutches, drivetrains, suspension and full custom builds — from bone-stock rebuild to trail-ready monster."
+      title="Side by Side Repair & Service"
+      intro="Complete side by side service for RZR, Ranger, Maverick, Wolverine and more. We handle clutches, drivetrains, suspension and full custom builds — from bone-stock rebuild to trail-ready machine."
       image={IMAGES.utv}
-      imageAlt="UTV side-by-side vehicle in off-road terrain"
+      imageAlt="Side by side UTV vehicle in off-road terrain"
       bullets={[
         "Clutch, belt & drivetrain rebuilds",
         "CV axle & U-joint replacement",
@@ -38,8 +38,8 @@ export const Route = createFileRoute("/side-by-side")({
       ]}
       related={[
         { to: "/atv-repair", label: "ATV Repair", note: "Full ATV diagnostics and repair." },
-        { to: "/performance-upgrades", label: "Performance Upgrades", note: "Tuning, exhaust and drivetrain for more power." },
-        { to: "/custom-accessories", label: "Custom Accessories", note: "Lift kits, cages, coating and Cerakote." },
+        { to: "/powder-coating", label: "Powder Coating", note: "Durable finish for frames and parts." },
+        { to: "/custom-fabrication", label: "Custom Fabrication", label: "Custom Fabrication", note: "Lift kits, cages, brackets and builds." },
       ]}
     />
   ),
