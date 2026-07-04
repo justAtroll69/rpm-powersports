@@ -39,7 +39,7 @@ export const Route = createFileRoute("/side-by-side")({
       related={[
         { to: "/atv-repair", label: "ATV Repair", note: "Full ATV diagnostics and repair." },
         { to: "/powder-coating", label: "Powder Coating", note: "Durable finish for frames and parts." },
-        { to: "/custom-fabrication", label: "Custom Fabrication", label: "Custom Fabrication", note: "Lift kits, cages, brackets and builds." },
+        { to: "/custom-fabrication", label: "Custom Fabrication", note: "Lift kits, cages, brackets and builds." },
       ]}
     />
   ),

@@ -41,9 +41,9 @@ export const Route = createFileRoute("/atv-repair")({
         "Fluids, filters & tune-ups",
       ]}
       related={[
-        { to: "/performance-upgrades", label: "Performance Upgrades", note: "Unlock more power for your ATV." },
-        { to: "/custom-accessories", label: "Custom Accessories", note: "Lift kits, powder coating and custom finishes." },
-        { to: "/utv-repair", label: "UTV Repair", note: "Side-by-side service and maintenance." },
+        { to: "/side-by-side", label: "Side by Side", note: "Side-by-side service and maintenance." },
+        { to: "/powder-coating", label: "Powder Coating", note: "Durable finish for frames and parts." },
+        { to: "/custom-fabrication", label: "Custom Fabrication", note: "Lift kits, cages and custom builds." },
       ]}
     />
   ),

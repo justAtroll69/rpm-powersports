@@ -37,9 +37,9 @@ export const Route = createFileRoute("/jet-ski-repair")({
         "Trailer inspection",
       ]}
       related={[
-        { to: "/performance-upgrades", label: "Performance Upgrades", note: "Get more speed out of your PWC." },
-        { to: "/custom-accessories", label: "Custom Accessories", note: "Custom finishes and paintwork." },
-        { to: "/motorcycle-service", label: "Motorcycle Service", note: "Full service for street and dirt bikes." },
+        { to: "/powder-coating", label: "Powder Coating", note: "Durable finish for parts and accessories." },
+        { to: "/atv-repair", label: "ATV Repair", note: "Full ATV diagnostics and repair." },
+        { to: "/custom-fabrication", label: "Custom Fabrication", note: "Custom builds and accessories." },
       ]}
     />
   ),
