@@ -30,18 +30,18 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         title:
-          "RPM Powersports | ATV, UTV, Motorcycle & Jet Ski Repair — Screven, GA",
+          "RPM Powersports | ATV, Side by Side & Jet Ski Repair — Screven, GA",
       },
       {
         name: "description",
         content:
-          "RPM Powersports — ATV, UTV, motorcycle and jet ski repair in Screven, GA. Diagnostics, performance and custom work. Call (912) 402-4308.",
+          "RPM Powersports — ATV, side by side and jet ski repair, powder coating and custom fabrication in Screven, GA. Call (912) 402-4308.",
       },
       { property: "og:title", content: "RPM Powersports — Screven, GA" },
       {
         property: "og:description",
         content:
-          "ATV, UTV, motorcycle and jet ski repair, diagnostics and custom work in Screven, GA.",
+          "ATV, side by side and jet ski repair, powder coating and custom fabrication in Screven, GA.",
       },
       { property: "og:url", content: "/" },
       { property: "og:type", content: "website" },
@@ -53,13 +53,10 @@ export const Route = createFileRoute("/")({
 
 const SERVICES = [
   { to: "/atv-repair" as const, icon: Bike, title: "ATV Repair", copy: "Maintenance, diagnostics & rebuilds." },
-  { to: "/utv-repair" as const, icon: Car, title: "UTV Service", copy: "Side-by-side repair & tuning." },
-  { to: "/motorcycle-service" as const, icon: Bike, title: "Motorcycle Repair", copy: "Sport, cruiser and dirt bikes." },
+  { to: "/side-by-side" as const, icon: Car, title: "Side by Side", copy: "Repair, tuning & custom builds." },
   { to: "/jet-ski-repair" as const, icon: Ship, title: "Jet Ski Repair", copy: "PWC engine & jet pump service." },
-  { to: "/atv-repair" as const, icon: Zap, title: "Diagnostics", copy: "Engine & electrical troubleshooting." },
-  { to: "/performance-upgrades" as const, icon: Gauge, title: "Performance Upgrades", copy: "Tuning, exhaust, drivetrain." },
-  { to: "/custom-accessories" as const, icon: Palette, title: "Custom Accessories", copy: "Lifts, coating, hydrodip, Cerakote." },
-  { to: "/custom-accessories" as const, icon: Cog, title: "Fabrication Work", copy: "Custom mounts, brackets & builds." },
+  { to: "/powder-coating" as const, icon: Palette, title: "Powder Coating", copy: "Durable finish for any metal part." },
+  { to: "/custom-fabrication" as const, icon: Cog, title: "Custom Fabrication", copy: "Mounts, cages, brackets & builds." },
 ];
 
 function HomePage() {
@@ -81,7 +78,7 @@ function HomePage() {
             RPM <span className="text-primary">POWERSPORTS</span>
           </h1>
           <p className="mt-4 text-base uppercase tracking-[0.28em] text-muted-foreground sm:text-lg">
-            ATV · UTV · Motorcycle · Jet Ski — Service &amp; Repair
+            ATV · Side by Side · Jet Ski — Repair, Powder Coating &amp; Fabrication
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
             Screven, GA · Serving Southeast Georgia
@@ -143,9 +140,9 @@ function HomePage() {
         <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl tracking-wide sm:text-4xl">About the shop</h2>
           <p className="mt-4 text-muted-foreground">
-            RPM Powersports is a local powersports repair shop in Screven, Georgia.
-            We handle ATVs, UTVs, motorcycles and jet skis — reliable repairs,
-            maintenance and performance work.
+            RPM Powersports is a local powersports shop in Screven, Georgia.
+            We handle ATVs, side by sides and jet skis — plus powder coating
+            and custom fabrication work.
           </p>
         </div>
       </section>

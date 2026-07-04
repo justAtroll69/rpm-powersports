@@ -16,11 +16,10 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/atv-repair", changefreq: "monthly", priority: "0.9" },
-          { path: "/utv-repair", changefreq: "monthly", priority: "0.9" },
-          { path: "/motorcycle-service", changefreq: "monthly", priority: "0.9" },
+          { path: "/side-by-side", changefreq: "monthly", priority: "0.9" },
           { path: "/jet-ski-repair", changefreq: "monthly", priority: "0.9" },
-          { path: "/performance-upgrades", changefreq: "monthly", priority: "0.8" },
-          { path: "/custom-accessories", changefreq: "monthly", priority: "0.8" },
+          { path: "/powder-coating", changefreq: "monthly", priority: "0.8" },
+          { path: "/custom-fabrication", changefreq: "monthly", priority: "0.8" },
           { path: "/contact", changefreq: "yearly", priority: "0.7" },
         ];
 

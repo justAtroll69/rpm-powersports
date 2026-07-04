@@ -9,34 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UtvRepairRouteImport } from './routes/utv-repair'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PerformanceUpgradesRouteImport } from './routes/performance-upgrades'
-import { Route as MotorcycleServiceRouteImport } from './routes/motorcycle-service'
+import { Route as SideBySideRouteImport } from './routes/side-by-side'
+import { Route as PowderCoatingRouteImport } from './routes/powder-coating'
 import { Route as JetSkiRepairRouteImport } from './routes/jet-ski-repair'
-import { Route as CustomAccessoriesRouteImport } from './routes/custom-accessories'
+import { Route as CustomFabricationRouteImport } from './routes/custom-fabrication'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AtvRepairRouteImport } from './routes/atv-repair'
 import { Route as IndexRouteImport } from './routes/index'
 
-const UtvRepairRoute = UtvRepairRouteImport.update({
-  id: '/utv-repair',
-  path: '/utv-repair',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PerformanceUpgradesRoute = PerformanceUpgradesRouteImport.update({
-  id: '/performance-upgrades',
-  path: '/performance-upgrades',
+const SideBySideRoute = SideBySideRouteImport.update({
+  id: '/side-by-side',
+  path: '/side-by-side',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MotorcycleServiceRoute = MotorcycleServiceRouteImport.update({
-  id: '/motorcycle-service',
-  path: '/motorcycle-service',
+const PowderCoatingRoute = PowderCoatingRouteImport.update({
+  id: '/powder-coating',
+  path: '/powder-coating',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JetSkiRepairRoute = JetSkiRepairRouteImport.update({
@@ -44,9 +38,9 @@ const JetSkiRepairRoute = JetSkiRepairRouteImport.update({
   path: '/jet-ski-repair',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CustomAccessoriesRoute = CustomAccessoriesRouteImport.update({
-  id: '/custom-accessories',
-  path: '/custom-accessories',
+const CustomFabricationRoute = CustomFabricationRouteImport.update({
+  id: '/custom-fabrication',
+  path: '/custom-fabrication',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -69,35 +63,32 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/atv-repair': typeof AtvRepairRoute
   '/contact': typeof ContactRoute
-  '/custom-accessories': typeof CustomAccessoriesRoute
+  '/custom-fabrication': typeof CustomFabricationRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
-  '/motorcycle-service': typeof MotorcycleServiceRoute
-  '/performance-upgrades': typeof PerformanceUpgradesRoute
+  '/powder-coating': typeof PowderCoatingRoute
+  '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/utv-repair': typeof UtvRepairRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/atv-repair': typeof AtvRepairRoute
   '/contact': typeof ContactRoute
-  '/custom-accessories': typeof CustomAccessoriesRoute
+  '/custom-fabrication': typeof CustomFabricationRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
-  '/motorcycle-service': typeof MotorcycleServiceRoute
-  '/performance-upgrades': typeof PerformanceUpgradesRoute
+  '/powder-coating': typeof PowderCoatingRoute
+  '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/utv-repair': typeof UtvRepairRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/atv-repair': typeof AtvRepairRoute
   '/contact': typeof ContactRoute
-  '/custom-accessories': typeof CustomAccessoriesRoute
+  '/custom-fabrication': typeof CustomFabricationRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
-  '/motorcycle-service': typeof MotorcycleServiceRoute
-  '/performance-upgrades': typeof PerformanceUpgradesRoute
+  '/powder-coating': typeof PowderCoatingRoute
+  '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/utv-repair': typeof UtvRepairRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -105,57 +96,46 @@ export interface FileRouteTypes {
     | '/'
     | '/atv-repair'
     | '/contact'
-    | '/custom-accessories'
+    | '/custom-fabrication'
     | '/jet-ski-repair'
-    | '/motorcycle-service'
-    | '/performance-upgrades'
+    | '/powder-coating'
+    | '/side-by-side'
     | '/sitemap.xml'
-    | '/utv-repair'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/atv-repair'
     | '/contact'
-    | '/custom-accessories'
+    | '/custom-fabrication'
     | '/jet-ski-repair'
-    | '/motorcycle-service'
-    | '/performance-upgrades'
+    | '/powder-coating'
+    | '/side-by-side'
     | '/sitemap.xml'
-    | '/utv-repair'
   id:
     | '__root__'
     | '/'
     | '/atv-repair'
     | '/contact'
-    | '/custom-accessories'
+    | '/custom-fabrication'
     | '/jet-ski-repair'
-    | '/motorcycle-service'
-    | '/performance-upgrades'
+    | '/powder-coating'
+    | '/side-by-side'
     | '/sitemap.xml'
-    | '/utv-repair'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AtvRepairRoute: typeof AtvRepairRoute
   ContactRoute: typeof ContactRoute
-  CustomAccessoriesRoute: typeof CustomAccessoriesRoute
+  CustomFabricationRoute: typeof CustomFabricationRoute
   JetSkiRepairRoute: typeof JetSkiRepairRoute
-  MotorcycleServiceRoute: typeof MotorcycleServiceRoute
-  PerformanceUpgradesRoute: typeof PerformanceUpgradesRoute
+  PowderCoatingRoute: typeof PowderCoatingRoute
+  SideBySideRoute: typeof SideBySideRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  UtvRepairRoute: typeof UtvRepairRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/utv-repair': {
-      id: '/utv-repair'
-      path: '/utv-repair'
-      fullPath: '/utv-repair'
-      preLoaderRoute: typeof UtvRepairRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -163,18 +143,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/performance-upgrades': {
-      id: '/performance-upgrades'
-      path: '/performance-upgrades'
-      fullPath: '/performance-upgrades'
-      preLoaderRoute: typeof PerformanceUpgradesRouteImport
+    '/side-by-side': {
+      id: '/side-by-side'
+      path: '/side-by-side'
+      fullPath: '/side-by-side'
+      preLoaderRoute: typeof SideBySideRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/motorcycle-service': {
-      id: '/motorcycle-service'
-      path: '/motorcycle-service'
-      fullPath: '/motorcycle-service'
-      preLoaderRoute: typeof MotorcycleServiceRouteImport
+    '/powder-coating': {
+      id: '/powder-coating'
+      path: '/powder-coating'
+      fullPath: '/powder-coating'
+      preLoaderRoute: typeof PowderCoatingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jet-ski-repair': {
@@ -184,11 +164,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JetSkiRepairRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/custom-accessories': {
-      id: '/custom-accessories'
-      path: '/custom-accessories'
-      fullPath: '/custom-accessories'
-      preLoaderRoute: typeof CustomAccessoriesRouteImport
+    '/custom-fabrication': {
+      id: '/custom-fabrication'
+      path: '/custom-fabrication'
+      fullPath: '/custom-fabrication'
+      preLoaderRoute: typeof CustomFabricationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -219,12 +199,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AtvRepairRoute: AtvRepairRoute,
   ContactRoute: ContactRoute,
-  CustomAccessoriesRoute: CustomAccessoriesRoute,
+  CustomFabricationRoute: CustomFabricationRoute,
   JetSkiRepairRoute: JetSkiRepairRoute,
-  MotorcycleServiceRoute: MotorcycleServiceRoute,
-  PerformanceUpgradesRoute: PerformanceUpgradesRoute,
+  PowderCoatingRoute: PowderCoatingRoute,
+  SideBySideRoute: SideBySideRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  UtvRepairRoute: UtvRepairRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

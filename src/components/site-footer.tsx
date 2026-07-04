@@ -22,9 +22,9 @@ export function SiteFooter() {
             <span className="font-display text-2xl tracking-wider">RPM POWERSPORTS</span>
           </div>
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
-            Professional powersports repair, performance and customization shop
-            serving Screven, GA and the surrounding region. ATVs, UTVs,
-            motorcycles, jet skis and custom builds.
+            Professional powersports repair, powder coating and custom fabrication
+            serving Screven, GA and the surrounding region. ATVs, side by sides,
+            jet skis and custom builds.
           </p>
           <a
             href={FACEBOOK_URL}
