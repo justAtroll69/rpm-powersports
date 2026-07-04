@@ -444,6 +444,74 @@ function HomePage() {
         </div>
       </section>
 
+      {/* FACEBOOK / FOLLOW OUR WORK */}
+      <section className="border-y border-border/60 bg-background">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+          <div>
+            <p className="font-display text-xs uppercase tracking-[0.32em] text-primary">
+              Follow our work
+            </p>
+            <h2 className="mt-2 font-display text-4xl tracking-wide sm:text-5xl">
+              See our latest builds<br />on <span className="text-primary">Facebook</span>.
+            </h2>
+            <p className="mt-5 max-w-lg text-muted-foreground">
+              Stay updated with fresh builds, in-shop repairs, custom
+              fabrication projects and customer rides. Follow RPM Powersports
+              on Facebook for the newest work coming out of the shop.
+            </p>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-transform hover:-translate-y-0.5"
+            >
+              <Facebook className="h-4 w-4" /> Follow on Facebook
+              <ChevronRight className="h-4 w-4" />
+            </a>
+          </div>
+          <a
+            href={FACEBOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block overflow-hidden rounded-sm border border-border/70 bg-card/60 p-8 shadow-plate transition-colors hover:border-primary/60"
+          >
+            <div className="carbon-grid absolute inset-0 opacity-40" />
+            <div className="relative flex items-center gap-5">
+              <span className="grid h-16 w-16 flex-shrink-0 place-items-center rounded-sm bg-primary text-primary-foreground">
+                <Facebook className="h-8 w-8" />
+              </span>
+              <div>
+                <div className="font-display text-2xl tracking-wide">
+                  @RPM Powersports
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  facebook.com/RPM-Powersports
+                </div>
+              </div>
+            </div>
+            <div className="relative mt-8 grid grid-cols-3 gap-3">
+              {[IMAGES.workshop, IMAGES.hero, IMAGES.workshop].map((src, i) => (
+                <div
+                  key={i}
+                  className="aspect-square overflow-hidden rounded-sm border border-border/60"
+                >
+                  <img
+                    src={src}
+                    alt="RPM Powersports build"
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="relative mt-6 inline-flex items-center gap-2 text-sm text-primary">
+              See latest builds & customer projects
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="relative overflow-hidden">
         <div className="carbon-grid absolute inset-0 opacity-60" />
