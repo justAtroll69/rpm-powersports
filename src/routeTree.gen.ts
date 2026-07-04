@@ -9,8 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UtvRepairRouteImport } from './routes/utv-repair'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PerformanceUpgradesRouteImport } from './routes/performance-upgrades'
+import { Route as MotorcycleServiceRouteImport } from './routes/motorcycle-service'
+import { Route as JetSkiRepairRouteImport } from './routes/jet-ski-repair'
+import { Route as CustomAccessoriesRouteImport } from './routes/custom-accessories'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AtvRepairRouteImport } from './routes/atv-repair'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UtvRepairRoute = UtvRepairRouteImport.update({
+  id: '/utv-repair',
+  path: '/utv-repair',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerformanceUpgradesRoute = PerformanceUpgradesRouteImport.update({
+  id: '/performance-upgrades',
+  path: '/performance-upgrades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotorcycleServiceRoute = MotorcycleServiceRouteImport.update({
+  id: '/motorcycle-service',
+  path: '/motorcycle-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JetSkiRepairRoute = JetSkiRepairRouteImport.update({
+  id: '/jet-ski-repair',
+  path: '/jet-ski-repair',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomAccessoriesRoute = CustomAccessoriesRouteImport.update({
+  id: '/custom-accessories',
+  path: '/custom-accessories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtvRepairRoute = AtvRepairRouteImport.update({
+  id: '/atv-repair',
+  path: '/atv-repair',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +67,144 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atv-repair': typeof AtvRepairRoute
+  '/contact': typeof ContactRoute
+  '/custom-accessories': typeof CustomAccessoriesRoute
+  '/jet-ski-repair': typeof JetSkiRepairRoute
+  '/motorcycle-service': typeof MotorcycleServiceRoute
+  '/performance-upgrades': typeof PerformanceUpgradesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/utv-repair': typeof UtvRepairRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atv-repair': typeof AtvRepairRoute
+  '/contact': typeof ContactRoute
+  '/custom-accessories': typeof CustomAccessoriesRoute
+  '/jet-ski-repair': typeof JetSkiRepairRoute
+  '/motorcycle-service': typeof MotorcycleServiceRoute
+  '/performance-upgrades': typeof PerformanceUpgradesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/utv-repair': typeof UtvRepairRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atv-repair': typeof AtvRepairRoute
+  '/contact': typeof ContactRoute
+  '/custom-accessories': typeof CustomAccessoriesRoute
+  '/jet-ski-repair': typeof JetSkiRepairRoute
+  '/motorcycle-service': typeof MotorcycleServiceRoute
+  '/performance-upgrades': typeof PerformanceUpgradesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/utv-repair': typeof UtvRepairRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/atv-repair'
+    | '/contact'
+    | '/custom-accessories'
+    | '/jet-ski-repair'
+    | '/motorcycle-service'
+    | '/performance-upgrades'
+    | '/sitemap.xml'
+    | '/utv-repair'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/atv-repair'
+    | '/contact'
+    | '/custom-accessories'
+    | '/jet-ski-repair'
+    | '/motorcycle-service'
+    | '/performance-upgrades'
+    | '/sitemap.xml'
+    | '/utv-repair'
+  id:
+    | '__root__'
+    | '/'
+    | '/atv-repair'
+    | '/contact'
+    | '/custom-accessories'
+    | '/jet-ski-repair'
+    | '/motorcycle-service'
+    | '/performance-upgrades'
+    | '/sitemap.xml'
+    | '/utv-repair'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtvRepairRoute: typeof AtvRepairRoute
+  ContactRoute: typeof ContactRoute
+  CustomAccessoriesRoute: typeof CustomAccessoriesRoute
+  JetSkiRepairRoute: typeof JetSkiRepairRoute
+  MotorcycleServiceRoute: typeof MotorcycleServiceRoute
+  PerformanceUpgradesRoute: typeof PerformanceUpgradesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  UtvRepairRoute: typeof UtvRepairRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/utv-repair': {
+      id: '/utv-repair'
+      path: '/utv-repair'
+      fullPath: '/utv-repair'
+      preLoaderRoute: typeof UtvRepairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/performance-upgrades': {
+      id: '/performance-upgrades'
+      path: '/performance-upgrades'
+      fullPath: '/performance-upgrades'
+      preLoaderRoute: typeof PerformanceUpgradesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/motorcycle-service': {
+      id: '/motorcycle-service'
+      path: '/motorcycle-service'
+      fullPath: '/motorcycle-service'
+      preLoaderRoute: typeof MotorcycleServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jet-ski-repair': {
+      id: '/jet-ski-repair'
+      path: '/jet-ski-repair'
+      fullPath: '/jet-ski-repair'
+      preLoaderRoute: typeof JetSkiRepairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/custom-accessories': {
+      id: '/custom-accessories'
+      path: '/custom-accessories'
+      fullPath: '/custom-accessories'
+      preLoaderRoute: typeof CustomAccessoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atv-repair': {
+      id: '/atv-repair'
+      path: '/atv-repair'
+      fullPath: '/atv-repair'
+      preLoaderRoute: typeof AtvRepairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +217,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtvRepairRoute: AtvRepairRoute,
+  ContactRoute: ContactRoute,
+  CustomAccessoriesRoute: CustomAccessoriesRoute,
+  JetSkiRepairRoute: JetSkiRepairRoute,
+  MotorcycleServiceRoute: MotorcycleServiceRoute,
+  PerformanceUpgradesRoute: PerformanceUpgradesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  UtvRepairRoute: UtvRepairRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
