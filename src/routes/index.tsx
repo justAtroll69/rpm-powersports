@@ -30,18 +30,18 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         title:
-          "RPM Powersports | ATV, UTV, Motorcycle & Jet Ski Repair — Screven, GA",
+          "RPM Powersports | ATV, Side by Side & Jet Ski Repair — Screven, GA",
       },
       {
         name: "description",
         content:
-          "RPM Powersports — ATV, UTV, motorcycle and jet ski repair in Screven, GA. Diagnostics, performance and custom work. Call (912) 402-4308.",
+          "RPM Powersports — ATV, side by side and jet ski repair, powder coating and custom fabrication in Screven, GA. Call (912) 402-4308.",
       },
       { property: "og:title", content: "RPM Powersports — Screven, GA" },
       {
         property: "og:description",
         content:
-          "ATV, UTV, motorcycle and jet ski repair, diagnostics and custom work in Screven, GA.",
+          "ATV, side by side and jet ski repair, powder coating and custom fabrication in Screven, GA.",
       },
       { property: "og:url", content: "/" },
       { property: "og:type", content: "website" },
