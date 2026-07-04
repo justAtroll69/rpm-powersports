@@ -33,31 +33,43 @@ export const Route = createFileRoute("/contact")({
 });
 
 const serviceRequestSchema = z.object({
-  name: z.string().trim().min(2, "Name required").max(80),
+  fullName: z.string().trim().min(2, "Full name required").max(120),
   phone: z
     .string()
     .trim()
     .min(7, "Valid phone required")
-    .max(20)
+    .max(30)
     .regex(/^[0-9()+\-.\s]+$/, "Invalid phone"),
-  email: z.string().trim().email("Valid email required").max(160).optional().or(z.literal("")),
-  machine: z.string().trim().min(2, "Machine required").max(80),
-  message: z.string().trim().min(5, "Please describe the issue").max(1200),
+  email: z.string().trim().email("Valid email required").max(200),
+  vehicleYear: z.string().trim().min(2, "Year required").max(10),
+  vehicleMake: z.string().trim().min(1, "Make required").max(60),
+  vehicleModel: z.string().trim().min(1, "Model required").max(80),
+  serviceNeeded: z.string().trim().min(2, "Service required").max(300),
+  preferredDate: z.string().trim().min(1, "Date required").max(60),
+  additionalComments: z.string().trim().max(2000).optional().or(z.literal("")),
 });
 
 function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "sent" | "error"
+  >("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const raw = {
-      name: String(fd.get("name") ?? ""),
+      fullName: String(fd.get("fullName") ?? ""),
       phone: String(fd.get("phone") ?? ""),
       email: String(fd.get("email") ?? ""),
-      machine: String(fd.get("machine") ?? ""),
-      message: String(fd.get("message") ?? ""),
+      vehicleYear: String(fd.get("vehicleYear") ?? ""),
+      vehicleMake: String(fd.get("vehicleMake") ?? ""),
+      vehicleModel: String(fd.get("vehicleModel") ?? ""),
+      serviceNeeded: String(fd.get("serviceNeeded") ?? ""),
+      preferredDate: String(fd.get("preferredDate") ?? ""),
+      additionalComments: String(fd.get("additionalComments") ?? ""),
     };
     const parsed = serviceRequestSchema.safeParse(raw);
     if (!parsed.success) {
@@ -71,16 +83,26 @@ function ContactPage() {
       return;
     }
     setErrors({});
-    // Open user's mail client with a pre-filled message.
-    const body = encodeURIComponent(
-      `Name: ${parsed.data.name}\nPhone: ${parsed.data.phone}\nEmail: ${parsed.data.email || "—"}\nMachine: ${parsed.data.machine}\n\n${parsed.data.message}`,
-    );
-    const subject = encodeURIComponent(
-      `Service Request — ${parsed.data.name} (${parsed.data.machine})`,
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    setStatus("sent");
-    (e.target as HTMLFormElement).reset();
+    setSubmitError(null);
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/public/service-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      const json = await res.json();
+      if (!json.success) throw new Error("Request failed");
+      setStatus("sent");
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setSubmitError(
+        "We couldn't submit your request. Please call us or try again.",
+      );
+    }
   }
 
   return (
@@ -188,68 +210,99 @@ function ContactPage() {
                 <div className="mt-6 flex items-start gap-3 rounded-sm border border-primary/40 bg-primary/10 p-4 text-sm">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                   <div>
-                    Your email client has been opened with your request. If it
-                    didn't open, please call{" "}
-                    <a href={PHONE_HREF} className="underline">
-                      {PHONE_DISPLAY}
-                    </a>
-                    .
+                    Thank you! Your service request has been received. A member
+                    of our team will contact you shortly.
                   </div>
                 </div>
-              ) : null}
-
-              <form onSubmit={onSubmit} className="mt-6 grid gap-4" noValidate>
-                <div className="grid gap-4 sm:grid-cols-2">
+              ) : (
+                <form
+                  onSubmit={onSubmit}
+                  className="mt-6 grid gap-4"
+                  noValidate
+                >
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <Field
+                      label="Full name"
+                      name="fullName"
+                      autoComplete="name"
+                      error={errors.fullName}
+                    />
+                    <Field
+                      label="Phone number"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      error={errors.phone}
+                    />
+                  </div>
                   <Field
-                    label="Your name"
-                    name="name"
-                    autoComplete="name"
-                    error={errors.name}
-                  />
-                  <Field
-                    label="Phone"
-                    name="phone"
-                    type="tel"
-                    autoComplete="tel"
-                    error={errors.phone}
-                  />
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Field
-                    label="Email (optional)"
+                    label="Email address"
                     name="email"
                     type="email"
                     autoComplete="email"
                     error={errors.email}
                   />
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    <Field
+                      label="Vehicle year"
+                      name="vehicleYear"
+                      placeholder="2018"
+                      error={errors.vehicleYear}
+                    />
+                    <Field
+                      label="Vehicle make"
+                      name="vehicleMake"
+                      placeholder="Polaris"
+                      error={errors.vehicleMake}
+                    />
+                    <Field
+                      label="Vehicle model"
+                      name="vehicleModel"
+                      placeholder="RZR 900"
+                      error={errors.vehicleModel}
+                    />
+                  </div>
                   <Field
-                    label="Machine (year, make, model)"
-                    name="machine"
-                    placeholder="e.g. 2018 Polaris RZR 900"
-                    error={errors.machine}
+                    label="Service needed"
+                    name="serviceNeeded"
+                    placeholder="e.g. Full service, carb clean, powder coating"
+                    error={errors.serviceNeeded}
                   />
-                </div>
-                <Field
-                  label="What's going on?"
-                  name="message"
-                  as="textarea"
-                  rows={5}
-                  error={errors.message}
-                />
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center rounded-sm bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-ember transition-transform hover:-translate-y-0.5"
-                >
-                  Send request
-                </button>
-                <p className="text-xs text-muted-foreground">
-                  Prefer to talk? Call{" "}
-                  <a href={PHONE_HREF} className="text-primary hover:underline">
-                    {PHONE_DISPLAY}
-                  </a>
-                  .
-                </p>
-              </form>
+                  <Field
+                    label="Preferred appointment date"
+                    name="preferredDate"
+                    type="date"
+                    error={errors.preferredDate}
+                  />
+                  <Field
+                    label="Additional comments"
+                    name="additionalComments"
+                    as="textarea"
+                    rows={4}
+                    error={errors.additionalComments}
+                  />
+                  {submitError ? (
+                    <p className="text-sm text-primary">{submitError}</p>
+                  ) : null}
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="inline-flex items-center justify-center rounded-sm bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-ember transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {status === "submitting" ? "Submitting…" : "Submit Request"}
+                  </button>
+                  <p className="text-xs text-muted-foreground">
+                    Prefer to talk? Call{" "}
+                    <a
+                      href={PHONE_HREF}
+                      className="text-primary hover:underline"
+                    >
+                      {PHONE_DISPLAY}
+                    </a>
+                    .
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </div>
