@@ -11,8 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UtvRepairRouteImport } from './routes/utv-repair'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PerformanceUpgradesRouteImport } from './routes/performance-upgrades'
-import { Route as MotorcycleServiceRouteImport } from './routes/motorcycle-service'
 import { Route as JetSkiRepairRouteImport } from './routes/jet-ski-repair'
 import { Route as CustomAccessoriesRouteImport } from './routes/custom-accessories'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -27,16 +25,6 @@ const UtvRepairRoute = UtvRepairRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PerformanceUpgradesRoute = PerformanceUpgradesRouteImport.update({
-  id: '/performance-upgrades',
-  path: '/performance-upgrades',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MotorcycleServiceRoute = MotorcycleServiceRouteImport.update({
-  id: '/motorcycle-service',
-  path: '/motorcycle-service',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JetSkiRepairRoute = JetSkiRepairRouteImport.update({
@@ -71,8 +59,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/custom-accessories': typeof CustomAccessoriesRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
-  '/motorcycle-service': typeof MotorcycleServiceRoute
-  '/performance-upgrades': typeof PerformanceUpgradesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/utv-repair': typeof UtvRepairRoute
 }
@@ -82,8 +68,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/custom-accessories': typeof CustomAccessoriesRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
-  '/motorcycle-service': typeof MotorcycleServiceRoute
-  '/performance-upgrades': typeof PerformanceUpgradesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/utv-repair': typeof UtvRepairRoute
 }
@@ -94,8 +78,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/custom-accessories': typeof CustomAccessoriesRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
-  '/motorcycle-service': typeof MotorcycleServiceRoute
-  '/performance-upgrades': typeof PerformanceUpgradesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/utv-repair': typeof UtvRepairRoute
 }
@@ -107,8 +89,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/custom-accessories'
     | '/jet-ski-repair'
-    | '/motorcycle-service'
-    | '/performance-upgrades'
     | '/sitemap.xml'
     | '/utv-repair'
   fileRoutesByTo: FileRoutesByTo
@@ -118,8 +98,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/custom-accessories'
     | '/jet-ski-repair'
-    | '/motorcycle-service'
-    | '/performance-upgrades'
     | '/sitemap.xml'
     | '/utv-repair'
   id:
@@ -129,8 +107,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/custom-accessories'
     | '/jet-ski-repair'
-    | '/motorcycle-service'
-    | '/performance-upgrades'
     | '/sitemap.xml'
     | '/utv-repair'
   fileRoutesById: FileRoutesById
@@ -141,8 +117,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CustomAccessoriesRoute: typeof CustomAccessoriesRoute
   JetSkiRepairRoute: typeof JetSkiRepairRoute
-  MotorcycleServiceRoute: typeof MotorcycleServiceRoute
-  PerformanceUpgradesRoute: typeof PerformanceUpgradesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UtvRepairRoute: typeof UtvRepairRoute
 }
@@ -161,20 +135,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/performance-upgrades': {
-      id: '/performance-upgrades'
-      path: '/performance-upgrades'
-      fullPath: '/performance-upgrades'
-      preLoaderRoute: typeof PerformanceUpgradesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/motorcycle-service': {
-      id: '/motorcycle-service'
-      path: '/motorcycle-service'
-      fullPath: '/motorcycle-service'
-      preLoaderRoute: typeof MotorcycleServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jet-ski-repair': {
@@ -221,8 +181,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CustomAccessoriesRoute: CustomAccessoriesRoute,
   JetSkiRepairRoute: JetSkiRepairRoute,
-  MotorcycleServiceRoute: MotorcycleServiceRoute,
-  PerformanceUpgradesRoute: PerformanceUpgradesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UtvRepairRoute: UtvRepairRoute,
 }
