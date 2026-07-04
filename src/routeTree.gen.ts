@@ -19,6 +19,7 @@ import { Route as AtvRepairRouteImport } from './routes/atv-repair'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicServiceRequestRouteImport } from './routes/api/public/service-request'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
@@ -75,6 +76,11 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicServiceRequestRoute = ApiPublicServiceRequestRouteImport.update({
+  id: '/api/public/service-request',
+  path: '/api/public/service-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalSendRoute =
   LovableEmailTransactionalSendRouteImport.update({
     id: '/lovable/email/transactional/send',
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/api/public/service-request': typeof ApiPublicServiceRequestRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -131,6 +138,7 @@ export interface FileRoutesByTo {
   '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/api/public/service-request': typeof ApiPublicServiceRequestRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/api/public/service-request': typeof ApiPublicServiceRequestRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/side-by-side'
     | '/sitemap.xml'
     | '/email/unsubscribe'
+    | '/api/public/service-request'
     | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/side-by-side'
     | '/sitemap.xml'
     | '/email/unsubscribe'
+    | '/api/public/service-request'
     | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/side-by-side'
     | '/sitemap.xml'
     | '/email/unsubscribe'
+    | '/api/public/service-request'
     | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -220,6 +232,7 @@ export interface RootRouteChildren {
   SideBySideRoute: typeof SideBySideRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  ApiPublicServiceRequestRoute: typeof ApiPublicServiceRequestRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
@@ -300,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/service-request': {
+      id: '/api/public/service-request'
+      path: '/api/public/service-request'
+      fullPath: '/api/public/service-request'
+      preLoaderRoute: typeof ApiPublicServiceRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/send': {
       id: '/lovable/email/transactional/send'
       path: '/lovable/email/transactional/send'
@@ -348,6 +368,7 @@ const rootRouteChildren: RootRouteChildren = {
   SideBySideRoute: SideBySideRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  ApiPublicServiceRequestRoute: ApiPublicServiceRequestRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
