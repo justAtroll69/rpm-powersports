@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
+import { format } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import {
   ADDRESS_LINE,
   DIRECTIONS_URL,
@@ -11,7 +19,14 @@ import {
   PHONE_HREF,
 } from "@/lib/site";
 import { CtaButtons } from "@/components/cta-bar";
-import { CheckCircle2, Facebook, Mail, MapPin, Phone } from "lucide-react";
+import {
+  CalendarIcon,
+  CheckCircle2,
+  Facebook,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -55,6 +70,8 @@ function ContactPage() {
   >("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [preferredDate, setPreferredDate] = useState<Date | undefined>();
+  const [dateOpen, setDateOpen] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -68,7 +85,7 @@ function ContactPage() {
       vehicleMake: String(fd.get("vehicleMake") ?? ""),
       vehicleModel: String(fd.get("vehicleModel") ?? ""),
       serviceNeeded: String(fd.get("serviceNeeded") ?? ""),
-      preferredDate: String(fd.get("preferredDate") ?? ""),
+      preferredDate: preferredDate ? format(preferredDate, "PPP") : "",
       additionalComments: String(fd.get("additionalComments") ?? ""),
     };
     const parsed = serviceRequestSchema.safeParse(raw);
@@ -96,6 +113,7 @@ function ContactPage() {
       if (!json.success) throw new Error("Request failed");
       setStatus("sent");
       form.reset();
+      setPreferredDate(undefined);
     } catch (err) {
       console.error(err);
       setStatus("error");
@@ -268,12 +286,51 @@ function ContactPage() {
                     placeholder="e.g. Full service, carb clean, powder coating"
                     error={errors.serviceNeeded}
                   />
-                  <Field
-                    label="Preferred appointment date"
-                    name="preferredDate"
-                    type="date"
-                    error={errors.preferredDate}
-                  />
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      Preferred appointment date
+                    </span>
+                    <Popover open={dateOpen} onOpenChange={setDateOpen}>
+                      <PopoverTrigger asChild>
+                        <button
+                          type="button"
+                          className={cn(
+                            "flex w-full items-center justify-between rounded-sm border border-border bg-background px-3 py-2.5 text-left text-sm text-foreground hover:border-primary/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary",
+                            !preferredDate && "text-muted-foreground/70",
+                          )}
+                        >
+                          {preferredDate
+                            ? format(preferredDate, "PPP")
+                            : "Pick a date"}
+                          <CalendarIcon className="ml-2 h-4 w-4 text-primary" />
+                        </button>
+                      </PopoverTrigger>
+                      <PopoverContent
+                        className="w-auto p-0 pointer-events-auto"
+                        align="start"
+                      >
+                        <Calendar
+                          mode="single"
+                          selected={preferredDate}
+                          onSelect={(d) => {
+                            setPreferredDate(d);
+                            setDateOpen(false);
+                          }}
+                          disabled={(d) =>
+                            d <
+                            new Date(new Date().setHours(0, 0, 0, 0))
+                          }
+                          initialFocus
+                          className={cn("p-3 pointer-events-auto")}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    {errors.preferredDate ? (
+                      <span className="text-xs text-primary">
+                        {errors.preferredDate}
+                      </span>
+                    ) : null}
+                  </label>
                   <Field
                     label="Additional comments"
                     name="additionalComments"
