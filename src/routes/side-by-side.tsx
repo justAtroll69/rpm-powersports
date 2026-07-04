@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/service-page";
 import { IMAGES } from "@/lib/images";
 
-export const Route = createFileRoute("/utv-repair")({
+export const Route = createFileRoute("/side-by-side")({
   head: () => ({
     meta: [
       { title: "UTV Repair & Service in Screven, GA | RPM Powersports" },

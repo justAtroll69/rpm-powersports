@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/service-page";
 import { IMAGES } from "@/lib/images";
 
-export const Route = createFileRoute("/custom-accessories")({
+export const Route = createFileRoute("/custom-fabrication")({
   head: () => ({
     meta: [
       { title: "Custom Accessories, Powder Coating & Cerakote | RPM Powersports" },
