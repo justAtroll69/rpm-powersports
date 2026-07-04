@@ -4,11 +4,11 @@ const U = (id: string, w: number) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const IMAGES = {
-  hero: U("photo-1449426468159-d96dbf08f19f", 1920), // ATV / offroad
-  atv: U("photo-1449426468159-d96dbf08f19f", 1200),
+  hero: "/__l5e/assets-v1/505f813c-51ea-467e-89aa-d3821e8c09db/atv-real.jpg",
+  atv: "/__l5e/assets-v1/505f813c-51ea-467e-89aa-d3821e8c09db/atv-real.jpg",
   utv: U("photo-1583743089695-4b816a340f82", 1200), // side by side / off road buggy
   motorcycle: U("photo-1568772585407-9361f9bf3a87", 1200), // sport motorcycle
-  jetski: U("photo-1530866495561-507c9faab2ed", 1200), // jet ski water
+  jetski: "/__l5e/assets-v1/3973b203-fd3e-4945-8ec4-0ed03abc26a9/jetski-real.jpg",
   performance: U("photo-1486262715619-67b85e0b08d3", 1200), // engine
   custom: U("photo-1504222490345-c075b6008014", 1200), // workshop tools
   workshop: U("photo-1580274455191-1c62238fa333", 1600), // mechanic hands
