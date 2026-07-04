@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteHeader } from "../components/site-header";
+import { SiteFooter } from "../components/site-footer";
 
 function NotFoundComponent() {
   return (
@@ -77,21 +79,64 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      {
+        title:
+          "RPM Powersports | ATV & UTV Repair Screven GA | Powersports Service & Customization",
+      },
+      {
+        name: "description",
+        content:
+          "RPM Powersports in Screven, GA specializes in ATV & UTV repair, motorcycle service, jet ski repair, performance upgrades, and custom powersports accessories. Call (912) 402-4308.",
+      },
+      { name: "author", content: "RPM Powersports" },
+      { property: "og:site_name", content: "RPM Powersports" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;800&display=swap",
+      },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutomotiveBusiness",
+          name: "RPM Powersports",
+          image: "/favicon.ico",
+          telephone: "+1-912-402-4308",
+          email: "rpmpowersports2024@gmail.com",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "583 Stanfield Rd",
+            addressLocality: "Screven",
+            addressRegion: "GA",
+            postalCode: "31560",
+            addressCountry: "US",
+          },
+          areaServed: "Screven, GA and surrounding areas",
+          sameAs: [
+            "https://www.facebook.com/p/RPM-Powersports-61563468865747/",
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -119,8 +164,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <SiteHeader />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <SiteFooter />
+      </div>
     </QueryClientProvider>
   );
 }
