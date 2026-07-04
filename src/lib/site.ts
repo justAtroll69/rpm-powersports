@@ -28,7 +28,5 @@ export const NAV_LINKS: NavLink[] = [
   { to: "/utv-repair", label: "UTV" },
   { to: "/motorcycle-service", label: "Motorcycle" },
   { to: "/jet-ski-repair", label: "Jet Ski" },
-  { to: "/performance-upgrades", label: "Performance" },
-  { to: "/custom-accessories", label: "Custom" },
   { to: "/contact", label: "Contact" },
 ];
