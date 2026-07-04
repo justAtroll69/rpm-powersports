@@ -13,11 +13,10 @@ export type NavLink = {
   to:
     | "/"
     | "/atv-repair"
-    | "/utv-repair"
-    | "/motorcycle-service"
+    | "/side-by-side"
     | "/jet-ski-repair"
-    | "/performance-upgrades"
-    | "/custom-accessories"
+    | "/powder-coating"
+    | "/custom-fabrication"
     | "/contact";
   label: string;
 };
@@ -25,8 +24,9 @@ export type NavLink = {
 export const NAV_LINKS: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/atv-repair", label: "ATV" },
-  { to: "/utv-repair", label: "UTV" },
-  { to: "/motorcycle-service", label: "Motorcycle" },
+  { to: "/side-by-side", label: "Side by Side" },
   { to: "/jet-ski-repair", label: "Jet Ski" },
+  { to: "/powder-coating", label: "Powder Coating" },
+  { to: "/custom-fabrication", label: "Custom Fabrication" },
   { to: "/contact", label: "Contact" },
 ];
