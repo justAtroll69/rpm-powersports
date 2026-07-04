@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage } from "@/components/service-page";
-import { IMAGES } from "@/lib/images";
+import sideBySideHero from "@/assets/side-by-side-hero.jpg";
 
 export const Route = createFileRoute("/side-by-side")({
   head: () => ({
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/side-by-side")({
       eyebrow="Service"
       title="Side by Side Repair & Service"
       intro="Complete side by side service for RZR, Ranger, Maverick, Wolverine and more. We handle clutches, drivetrains, suspension and full custom builds — from bone-stock rebuild to trail-ready machine."
-      image={IMAGES.utv}
+      image={sideBySideHero}
       imageAlt="Side by side UTV vehicle in off-road terrain"
       bullets={[
         "Clutch, belt & drivetrain rebuilds",
