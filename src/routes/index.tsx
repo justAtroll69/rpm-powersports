@@ -8,6 +8,7 @@ import {
   Gauge,
   Mail,
   MapPin,
+  Package,
   Palette,
   Phone,
   Ship,
@@ -57,6 +58,7 @@ const SERVICES = [
   { to: "/jet-ski-repair" as const, icon: Ship, title: "Jet Ski Repair", copy: "PWC engine & jet pump service." },
   { to: "/powder-coating" as const, icon: Palette, title: "Powder Coating", copy: "Durable finish for any metal part." },
   { to: "/custom-fabrication" as const, icon: Cog, title: "Custom Fabrication", copy: "Mounts, cages, brackets & builds." },
+  { to: "/parts" as const, icon: Package, title: "Order Parts", copy: "Request ATV, UTV & PWC parts." },
 ];
 
 function HomePage() {
