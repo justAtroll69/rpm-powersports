@@ -43,6 +43,7 @@ const partsSchema = z.object({
   partNumber: z.string().trim().max(120).optional().or(z.literal("")),
   quantity: z.string().trim().min(1, "Quantity required").max(10),
   notes: z.string().trim().max(2000).optional().or(z.literal("")),
+  orderingAs: z.enum(["customer", "owner"]),
 });
 
 function PartsPage() {
@@ -67,6 +68,7 @@ function PartsPage() {
       partNumber: String(fd.get("partNumber") ?? ""),
       quantity: String(fd.get("quantity") ?? ""),
       notes: String(fd.get("notes") ?? ""),
+      orderingAs: String(fd.get("orderingAs") ?? "customer"),
     };
     const parsed = partsSchema.safeParse(raw);
     if (!parsed.success) {
@@ -83,6 +85,10 @@ function PartsPage() {
     setSubmitError(null);
     setStatus("submitting");
     const d = parsed.data;
+    const splitLine =
+      d.orderingAs === "owner"
+        ? "Ordering as: Shop Owner — split 70% owner / 30% shop"
+        : "Ordering as: Customer — split 80% customer price / 20% shop markup";
     // Route through the existing service-request email pipeline so this
     // reliably hits the shop inbox, tagged clearly as a parts request.
     const payload = {
@@ -95,6 +101,7 @@ function PartsPage() {
       serviceNeeded: `PARTS REQUEST — ${d.partName} (qty ${d.quantity})`,
       preferredDate: "Parts request — quote ASAP",
       additionalComments: [
+        splitLine,
         `Part: ${d.partName}`,
         d.partNumber ? `Part #: ${d.partNumber}` : null,
         `Quantity: ${d.quantity}`,
@@ -247,6 +254,45 @@ function PartsPage() {
                 rows={4}
                 error={errors.notes}
               />
+              <fieldset className="rounded-sm border border-border/70 bg-background/40 p-4">
+                <legend className="px-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  Ordering as
+                </legend>
+                <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                  <label className="flex cursor-pointer items-start gap-2 rounded-sm border border-border/60 p-3 text-sm hover:border-primary/60">
+                    <input
+                      type="radio"
+                      name="orderingAs"
+                      value="customer"
+                      defaultChecked
+                      className="mt-0.5 accent-primary"
+                    />
+                    <span>
+                      <span className="block font-semibold">Customer</span>
+                      <span className="block text-xs text-muted-foreground">
+                        Standard retail — 80/20 split
+                      </span>
+                    </span>
+                  </label>
+                  <label className="flex cursor-pointer items-start gap-2 rounded-sm border border-border/60 p-3 text-sm hover:border-primary/60">
+                    <input
+                      type="radio"
+                      name="orderingAs"
+                      value="owner"
+                      className="mt-0.5 accent-primary"
+                    />
+                    <span>
+                      <span className="block font-semibold">Shop Owner</span>
+                      <span className="block text-xs text-muted-foreground">
+                        Owner order — 70/30 split
+                      </span>
+                    </span>
+                  </label>
+                </div>
+                {errors.orderingAs ? (
+                  <p className="mt-2 text-xs text-primary">{errors.orderingAs}</p>
+                ) : null}
+              </fieldset>
               {submitError ? (
                 <p className="text-sm text-primary">{submitError}</p>
               ) : null}
