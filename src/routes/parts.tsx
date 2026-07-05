@@ -43,6 +43,7 @@ const partsSchema = z.object({
   partNumber: z.string().trim().max(120).optional().or(z.literal("")),
   quantity: z.string().trim().min(1, "Quantity required").max(10),
   notes: z.string().trim().max(2000).optional().or(z.literal("")),
+  orderingAs: z.enum(["customer", "owner"]),
 });
 
 function PartsPage() {
@@ -67,6 +68,7 @@ function PartsPage() {
       partNumber: String(fd.get("partNumber") ?? ""),
       quantity: String(fd.get("quantity") ?? ""),
       notes: String(fd.get("notes") ?? ""),
+      orderingAs: String(fd.get("orderingAs") ?? "customer"),
     };
     const parsed = partsSchema.safeParse(raw);
     if (!parsed.success) {
@@ -83,6 +85,10 @@ function PartsPage() {
     setSubmitError(null);
     setStatus("submitting");
     const d = parsed.data;
+    const splitLine =
+      d.orderingAs === "owner"
+        ? "Ordering as: Shop Owner — split 70% owner / 30% shop"
+        : "Ordering as: Customer — split 80% customer price / 20% shop markup";
     // Route through the existing service-request email pipeline so this
     // reliably hits the shop inbox, tagged clearly as a parts request.
     const payload = {
@@ -95,6 +101,7 @@ function PartsPage() {
       serviceNeeded: `PARTS REQUEST — ${d.partName} (qty ${d.quantity})`,
       preferredDate: "Parts request — quote ASAP",
       additionalComments: [
+        splitLine,
         `Part: ${d.partName}`,
         d.partNumber ? `Part #: ${d.partNumber}` : null,
         `Quantity: ${d.quantity}`,
