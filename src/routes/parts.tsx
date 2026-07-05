@@ -254,6 +254,45 @@ function PartsPage() {
                 rows={4}
                 error={errors.notes}
               />
+              <fieldset className="rounded-sm border border-border/70 bg-background/40 p-4">
+                <legend className="px-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  Ordering as
+                </legend>
+                <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                  <label className="flex cursor-pointer items-start gap-2 rounded-sm border border-border/60 p-3 text-sm hover:border-primary/60">
+                    <input
+                      type="radio"
+                      name="orderingAs"
+                      value="customer"
+                      defaultChecked
+                      className="mt-0.5 accent-primary"
+                    />
+                    <span>
+                      <span className="block font-semibold">Customer</span>
+                      <span className="block text-xs text-muted-foreground">
+                        Standard retail — 80/20 split
+                      </span>
+                    </span>
+                  </label>
+                  <label className="flex cursor-pointer items-start gap-2 rounded-sm border border-border/60 p-3 text-sm hover:border-primary/60">
+                    <input
+                      type="radio"
+                      name="orderingAs"
+                      value="owner"
+                      className="mt-0.5 accent-primary"
+                    />
+                    <span>
+                      <span className="block font-semibold">Shop Owner</span>
+                      <span className="block text-xs text-muted-foreground">
+                        Owner order — 70/30 split
+                      </span>
+                    </span>
+                  </label>
+                </div>
+                {errors.orderingAs ? (
+                  <p className="mt-2 text-xs text-primary">{errors.orderingAs}</p>
+                ) : null}
+              </fieldset>
               {submitError ? (
                 <p className="text-sm text-primary">{submitError}</p>
               ) : null}
