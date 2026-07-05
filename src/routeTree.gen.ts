@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SideBySideRouteImport } from './routes/side-by-side'
 import { Route as PowderCoatingRouteImport } from './routes/powder-coating'
+import { Route as PartsRouteImport } from './routes/parts'
 import { Route as JetSkiRepairRouteImport } from './routes/jet-ski-repair'
 import { Route as CustomFabricationRouteImport } from './routes/custom-fabrication'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -39,6 +40,11 @@ const SideBySideRoute = SideBySideRouteImport.update({
 const PowderCoatingRoute = PowderCoatingRouteImport.update({
   id: '/powder-coating',
   path: '/powder-coating',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartsRoute = PartsRouteImport.update({
+  id: '/parts',
+  path: '/parts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JetSkiRepairRoute = JetSkiRepairRouteImport.update({
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/custom-fabrication': typeof CustomFabricationRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
+  '/parts': typeof PartsRoute
   '/powder-coating': typeof PowderCoatingRoute
   '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/custom-fabrication': typeof CustomFabricationRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
+  '/parts': typeof PartsRoute
   '/powder-coating': typeof PowderCoatingRoute
   '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/custom-fabrication': typeof CustomFabricationRoute
   '/jet-ski-repair': typeof JetSkiRepairRoute
+  '/parts': typeof PartsRoute
   '/powder-coating': typeof PowderCoatingRoute
   '/side-by-side': typeof SideBySideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/custom-fabrication'
     | '/jet-ski-repair'
+    | '/parts'
     | '/powder-coating'
     | '/side-by-side'
     | '/sitemap.xml'
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/custom-fabrication'
     | '/jet-ski-repair'
+    | '/parts'
     | '/powder-coating'
     | '/side-by-side'
     | '/sitemap.xml'
@@ -209,6 +220,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/custom-fabrication'
     | '/jet-ski-repair'
+    | '/parts'
     | '/powder-coating'
     | '/side-by-side'
     | '/sitemap.xml'
@@ -228,6 +240,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CustomFabricationRoute: typeof CustomFabricationRoute
   JetSkiRepairRoute: typeof JetSkiRepairRoute
+  PartsRoute: typeof PartsRoute
   PowderCoatingRoute: typeof PowderCoatingRoute
   SideBySideRoute: typeof SideBySideRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -262,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/powder-coating'
       fullPath: '/powder-coating'
       preLoaderRoute: typeof PowderCoatingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parts': {
+      id: '/parts'
+      path: '/parts'
+      fullPath: '/parts'
+      preLoaderRoute: typeof PartsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jet-ski-repair': {
@@ -364,6 +384,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CustomFabricationRoute: CustomFabricationRoute,
   JetSkiRepairRoute: JetSkiRepairRoute,
+  PartsRoute: PartsRoute,
   PowderCoatingRoute: PowderCoatingRoute,
   SideBySideRoute: SideBySideRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

@@ -17,6 +17,7 @@ export type NavLink = {
     | "/jet-ski-repair"
     | "/powder-coating"
     | "/custom-fabrication"
+    | "/parts"
     | "/contact";
   label: string;
 };
@@ -28,5 +29,6 @@ export const NAV_LINKS: NavLink[] = [
   { to: "/jet-ski-repair", label: "Jet Ski" },
   { to: "/powder-coating", label: "Powder Coating" },
   { to: "/custom-fabrication", label: "Custom Fabrication" },
+  { to: "/parts", label: "Parts" },
   { to: "/contact", label: "Contact" },
 ];
